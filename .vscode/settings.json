@@ -1,0 +1,27 @@
+{
+    "cSpell.words": [
+        "Constrs",
+        "contraints",
+        "costraints",
+        "CUST",
+        "duedate",
+        "fout",
+        "Goodsense",
+        "gurobipy",
+        "Kdim",
+        "linalg",
+        "newa",
+        "newb",
+        "quicksum",
+        "rcosts",
+        "readyt",
+        "TODOS",
+        "vrptw",
+        "vtype",
+        "XCOORD"
+    ]
+    
+    "workbench.colorCustomizations": {
+        "editorLineNumber.foreground": "#00ff00"
+    }
+}

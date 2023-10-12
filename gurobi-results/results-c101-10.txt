@@ -1,0 +1,5 @@
+Instance: c101
+Number of customers: 10
+MILP (Gurobi) exact cost solution: 60.0
+Time elapsed: 0min0s
+Route for vehicle 0: [0, 5, 3, 7, 8, 10, 9, 6, 4, 2, 1, 11]
