@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
 from utilities import *
 from docplex.mp.model import Model
-
 
 def create_model(K, Q, n, q, a, b, d,**kwargs):
     """Create model"""

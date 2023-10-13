@@ -48,7 +48,7 @@ def read_instance(path, n):
         customer = dict(zip(fields, val))
         data.append(customer)
     data = data[0:n+1]
-    data.append(data[0]) # The depot is represented by two identical nodes 0 and n+1.
+    data.append(data[0]) 
     data[-1]["CUST-NO."] = "51"
     x = []; y = []; q = []; a = []; b = []; 
     for customer in data:

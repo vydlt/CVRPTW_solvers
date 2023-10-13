@@ -6,7 +6,6 @@ from time import process_time
 def create_model(d, q, Q, a, b, n, K):
     """Create routing model"""
     M = compute_max_cost(d, a, b, n)
-    #M = gp.GRB.INFINITY
     model = gp.Model("ESPModel")
     A = [(i,j,k) for i in range(n+2) for j in range(n+2) for k in range(K)]
     # Decision variables
@@ -23,13 +22,12 @@ def create_model(d, q, Q, a, b, n, K):
             model.addConstr(x_vars[0,j,k] <= v_vars[k])
     # Capacity constraint
     for k in range(K) :
-        model.addConstr(sum([q[i] * \
-                    gp.quicksum(x_vars[i,j,k] for j in range(n+2)) \
+        model.addConstr(sum([q[i] * gp.quicksum(x_vars[i,j,k] for j in range(n+2)) \
                         for i in range(1,n+1)]) <= Q*v_vars[k])
-    # Depot start constraint
+    # Origin of routes
     for k in range(K):
             model.addConstr(gp.quicksum(x_vars[0,j,k] for j in range(n+2)) <= 1)
-    # Depot finish constraint
+    # Destination of routes
     for k in range(K):
             model.addConstr(gp.quicksum(x_vars[i,n+1,k] for i in range(n+2)) <= 1)
     # Flow costraints
@@ -63,9 +61,9 @@ def create_model(d, q, Q, a, b, n, K):
         model.addConstr(gp.quicksum(x_vars[n+1,j,k] for j in range(n+2)) == 0)
     
     model.setObjective((gp.quicksum(x_vars[i,j,k]*d[i,j] for i in range(n+2) \
-                                       for k in range(K) for j in range(n+2))) + \
-                           (gp.quicksum(v_vars[k] for k in range(K))), \
-                           gp.GRB.MINIMIZE)
+                                        for k in range(K) for j in range(n+2))) + \
+                                            (gp.quicksum(v_vars[k] for k in range(K))), \
+                                                gp.GRB.MINIMIZE)
     # model.write("ESPModel.lp")
         
     return model, x_vars, A
@@ -114,7 +112,7 @@ def main():
     fout = open(filenameOut, "w")
     fout.write("Instance: " + str(instance_name) + "\n")
     fout.write("Number of customers: " + str(n) + "\n")
-    fout.write("MILP (Gurobi) exact cost solution: " + str(obj.getValue()) + "\n")
+    fout.write("Gurobi cost solution: " + str(obj.getValue()) + "\n")
     fout.write("Time elapsed: " + str(min) + "min" + str(sec) + "s" + "\n")
     i = 0
     for vehicle_number, route in routes.items():
