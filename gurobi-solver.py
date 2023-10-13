@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from utilities import *
+import gurobipy as gp
+import matplotlib.pyplot as plt 
+from time import process_time
 
 def create_model(d, q, Q, a, b, n, K):
     """Create mathematical model"""

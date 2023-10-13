@@ -1,10 +1,5 @@
-# -*- coding: utf-8 -*-
-
 import numpy as np
 import os
-import gurobipy as gp
-import matplotlib.pyplot as plt 
-from time import process_time
 from sys import exit
 
 def select_instance():
