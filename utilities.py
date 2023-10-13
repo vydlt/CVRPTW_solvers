@@ -3,8 +3,8 @@ import os
 from sys import exit
 
 def select_instance():
-    """Enter solomon instance and select a number of customers"""
-    print("Type instance ([r|c|rc][NNN]):")
+    """Enter solomon instance"""
+    print("Enter instance name ([r|c|rc][NNN]):")
     instance_name = None
     try:
         instance_name = input()
@@ -14,7 +14,7 @@ def select_instance():
         instance_name = instance_name[:-4]
     file_path = os.path.join("solomon-instances", instance_name+".txt")
     if not instance_name or not os.path.exists(file_path):
-        print("Instance does not exists. Exit."); 3
+        print("Instance does not exists. Exit."); exit(1)
     print("Select number of costumers (1-100):")
     n = None
     try:
@@ -27,7 +27,7 @@ def select_instance():
     return instance_name, file_path, n
     
 def read_instance(path, n):
-    """Read selected instance from file"""
+    """Read selected instance"""
     stream = ""
     with open(path, "r") as file:
         stream = file.readlines()
